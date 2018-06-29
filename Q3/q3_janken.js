@@ -22,8 +22,7 @@ do {
         let name;
         console.log("コンピューター：" + janken[comp]);
         console.log("あなた：" + janken[user]);
-        const result = user - comp;
-        switch (result) {
+        switch (user - comp) {
             case -2:
                 name = "コンピューター";
                 break;
