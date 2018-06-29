@@ -8,9 +8,9 @@
 // 多言語の連想配列を作りながら（jsでいうオブジェクト）カウントすればいいことに気づくのに時間がかかった。
 // eslintの警告で出てくるletとconstの違いがいまいちわからない。
 
-let inStr = window.prompt;
+let inStr = window.prompt("単語数を数えます。英文を入力してください");
 // 全角スペースを半角に変換
-inStr = inStr.replace(/　/, " ");
+inStr = inStr.replace(/\p{blank}/, " ");
 // 単語ごとに分解
 const inWord = inStr.split(" ");
 
