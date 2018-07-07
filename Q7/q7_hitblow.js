@@ -32,17 +32,32 @@ let counter = 0;
 function chkAns(ans, user) {
     let chkResult;
     // 配列のメソッド：indexOfを使って比較
+    for (const i in ans) {
+        const index = user.indexOf(ans[i]);
+        if (index > 0) {
+
+        } else {
+
+        }
+
+    }
 
     return chkResult;
 }
 // メッセージ出力＋回答受け取り
 function setMsgNum(str) {
-    let num = window.prompt(str, "答えを入力してね");
-    num = parseInt(num);
+    const num = window.prompt(str, "答えを入力してね");
     // 受け取った数値を配列にする
+    let inArr = num.split("");
+    if (!(inArr.length === 4)) {
+        window.prompt("4桁の数字を入力してください。");
+        console.error("入力エラー");
+        return;
+    }
+    inArr = parseInt(inArr);
 
     counter++;
-    return num;
+    return inArr;
 }
 
 const ans = makeDigitNum[3];
