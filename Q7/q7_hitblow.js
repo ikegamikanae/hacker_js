@@ -9,7 +9,7 @@
 
 let counter = 0;
 const ans = makeDigitNum(4);
-console.log(ans);
+// console.log(ans);
 // const ans = [0, 1, 2, 3];
 let user;
 let dispMsg = "4桁の数字を当ててみて。";
@@ -48,10 +48,7 @@ function makeDigitNum(n) {
         const idx = rand(0, j);
         const getNum = num.splice(idx, 1);
         resultArr.push(getNum[0]);
-        console.log("getNum:" + getNum);
     }
-    console.log("makeDigitNum:");
-    console.log(resultArr);
     return resultArr;
 
 }
@@ -68,12 +65,12 @@ function chkAns(ans, user) {
     for (const key in ans) {
         const val = ans[key];
         const index = user.indexOf(val);
-        console.log("key:" + key);
-        console.log("index:" + index);
+        // console.log("key:" + key);
+        // console.log("index:" + index);
         if (Number(key) === index) {
             // hit
             chkResult.hit += 1;
-            console.log("hit!");
+            // console.log("hit!");
         } else if (!(index === -1)) {
             // blow
             chkResult.blow += 1;
@@ -85,7 +82,6 @@ function chkAns(ans, user) {
 // メッセージ出力＋回答受け取り
 function setMsgNum(str) {
     const num = window.prompt(str, "答えを入力してね");
-    // num = parseInt(num);
     // 受け取った数値を配列にする
     let inArr = num.split("");
     inArr = inArr.map(function (inArr) {
@@ -93,10 +89,10 @@ function setMsgNum(str) {
     });
     if (!(inArr.length === 4)) {
         window.prompt("4桁の数字を入力してください。");
-        console.error("入力エラー");
+        // console.error("入力エラー");
         return;
     }
-    console.log(inArr);
+    // console.log(inArr);
 
     counter++;
     return inArr;
