@@ -1,3 +1,4 @@
+'use strict';
 // 課題７：hit & blow
 //  ランダムに用意された4桁の数字を当てる
 //  正解の数字は0-9、同じ数字は重複しない4桁
@@ -6,26 +7,24 @@
 //  ・数字だけが同じで桁位置が異なる：Blow
 
 
-
 let counter = 0;
-// const ans = makeDigitNum[3];
-const ans = [0, 1, 2, 3];
+const ans = makeDigitNum(4);
+console.log(ans);
+// const ans = [0, 1, 2, 3];
 let user;
 let dispMsg = "4桁の数字を当ててみて。";
 do {
     user = setMsgNum(dispMsg);
     // 答えとユーザの回答を比較
     const result = chkAns(ans, user);
+    dispMsg = `${result.hit}hit, ${result.blow}blow`;
     if (result.hit === 4) {
         // 完全に正解→ループを抜ける
         break;
-    } else {
-        // 完全に正解ではない場合→比較結果を出力
-        dispMsg = `${result.hit}hit, ${result.blow}blow`;
     }
 } while (!(ans === user));
 
-window.prompt(dispMsg + `・・・${counter}回目で当てました！`);
+window.prompt(dispMsg + `・・・正解！${counter}回目で当てました！`);
 
 /**
  * ランダムな値を返す
@@ -44,13 +43,15 @@ function makeDigitNum(n) {
     const num = Array.apply(null, new Array(10)).map(function (v, i) {
         return start + i;
     });
-    for (let j = length - 1; j > (length - n); j--) {
+    for (let j = length - 1; j >= (length - n); j--) {
         // とりあえずの配列作成
         const idx = rand(0, j);
         const getNum = num.splice(idx, 1);
-        resultArr.push = getNum;
+        resultArr.push(getNum[0]);
+        console.log("getNum:" + getNum);
     }
-
+    console.log("makeDigitNum:");
+    console.log(resultArr);
     return resultArr;
 
 }
@@ -67,10 +68,13 @@ function chkAns(ans, user) {
     for (const key in ans) {
         const val = ans[key];
         const index = user.indexOf(val);
-        if (key === index) {
+        console.log("key:" + key);
+        console.log("index:" + index);
+        if (Number(key) === index) {
             // hit
             chkResult.hit += 1;
-        } else if (!(key === -1)) {
+            console.log("hit!");
+        } else if (!(index === -1)) {
             // blow
             chkResult.blow += 1;
         }
