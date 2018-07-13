@@ -5,6 +5,28 @@
 //  ・数字と桁位置の両方が同じ：Hit
 //  ・数字だけが同じで桁位置が異なる：Blow
 
+
+
+let counter = 0;
+// const ans = makeDigitNum[3];
+const ans = [0, 1, 2, 3];
+let user;
+let dispMsg = "4桁の数字を当ててみて。";
+do {
+    user = setMsgNum(dispMsg);
+    // 答えとユーザの回答を比較
+    const result = chkAns(ans, user);
+    if (result.hit === 4) {
+        // 完全に正解→ループを抜ける
+        break;
+    } else {
+        // 完全に正解ではない場合→比較結果を出力
+        dispMsg = `${result.hit}hit, ${result.blow}blow`;
+    }
+} while (!(ans === user));
+
+window.prompt(dispMsg + `・・・${counter}回目で当てました！`);
+
 /**
  * ランダムな値を返す
  */
@@ -16,30 +38,42 @@ function rand(m, n) {
  * n個の要素を持つ配列（値はランダムな１桁の整数）を作成
  */
 function makeDigitNum(n) {
-    const num = [];
-    for (let i = 0; i < n; i++) {
-        num[i] = rand(0, 9);
+    const resultArr = [];
+    const length = 10;
+    const start = 0;
+    const num = Array.apply(null, new Array(10)).map(function (v, i) {
+        return start + i;
+    });
+    for (let j = length - 1; j > (length - n); j--) {
+        // とりあえずの配列作成
+        const idx = rand(0, j);
+        const getNum = num.splice(idx, 1);
+        resultArr.push = getNum;
     }
 
-    return num;
+    return resultArr;
 
 }
-let counter = 0;
+
 
 /**
  * 回答を確認
  */
 function chkAns(ans, user) {
-    let chkResult;
+    const chkResult = {};
+    chkResult.hit = 0;
+    chkResult.blow = 0;
     // 配列のメソッド：indexOfを使って比較
-    for (const i in ans) {
-        const index = user.indexOf(ans[i]);
-        if (index > 0) {
-
-        } else {
-
+    for (const key in ans) {
+        const val = ans[key];
+        const index = user.indexOf(val);
+        if (key === index) {
+            // hit
+            chkResult.hit += 1;
+        } else if (!(key === -1)) {
+            // blow
+            chkResult.blow += 1;
         }
-
     }
 
     return chkResult;
@@ -47,30 +81,19 @@ function chkAns(ans, user) {
 // メッセージ出力＋回答受け取り
 function setMsgNum(str) {
     const num = window.prompt(str, "答えを入力してね");
+    // num = parseInt(num);
     // 受け取った数値を配列にする
     let inArr = num.split("");
+    inArr = inArr.map(function (inArr) {
+        return Number(inArr);
+    });
     if (!(inArr.length === 4)) {
         window.prompt("4桁の数字を入力してください。");
         console.error("入力エラー");
         return;
     }
-    inArr = parseInt(inArr);
+    console.log(inArr);
 
     counter++;
     return inArr;
 }
-
-const ans = makeDigitNum[3];
-let user;
-const dispMsg = "4桁の数字を当ててみて。";
-do {
-    user = setMsgNum(dispMsg);
-    // 答えとユーザの回答を比較
-    const result = chkAns(ans, user);
-    // 完全に正解ではない場合→比較結果を出力
-
-    // 完全に正解→ループを抜ける
-
-} while (!(ans === user));
-
-window.prompt(dispMsg + `・・・${counter}回目で当てました！`);
