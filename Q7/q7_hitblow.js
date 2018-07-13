@@ -62,17 +62,26 @@ function chkAns(ans, user) {
     chkResult.hit = 0;
     chkResult.blow = 0;
     // 配列のメソッド：indexOfを使って比較
-    for (const key in ans) {
-        const val = ans[key];
+    // for (const key in ans) {
+    //     const val = ans[key];
+    //     const index = user.indexOf(val);
+    //     // console.log("key:" + key);
+    //     // console.log("index:" + index);
+    //     if (Number(key) === index) {
+    //         // hit
+    //         chkResult.hit += 1;
+    //         // console.log("hit!");
+    //     } else if (!(index === -1)) {
+    //         // blow
+    //         chkResult.blow += 1;
+    //     }
+    // }
+    for (let i = 0; i < ans.length; i++) {
+        const val = ans[i];
         const index = user.indexOf(val);
-        // console.log("key:" + key);
-        // console.log("index:" + index);
-        if (Number(key) === index) {
-            // hit
+        if (index === i) {
             chkResult.hit += 1;
-            // console.log("hit!");
         } else if (!(index === -1)) {
-            // blow
             chkResult.blow += 1;
         }
     }
