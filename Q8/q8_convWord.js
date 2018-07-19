@@ -40,8 +40,7 @@ const hash = {
   text: 'foofava',
 }
 
-// "text"を探す　→　"foo"があれば"uryyyy"に変換
-// 再帰処理？
+// "text"を探して"foo"があれば"uryyyy"に変換
 function seekWords(obj) {
   for (const o in obj) {
     if (o === "text") {
