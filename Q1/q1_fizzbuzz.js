@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 let num = window.prompt('数字を入力してください（正の値）');
 
 try {

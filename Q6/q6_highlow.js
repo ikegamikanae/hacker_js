@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
  * 課題６：High & Low
  * ランダムに用意された0-100までの数字を当てる
