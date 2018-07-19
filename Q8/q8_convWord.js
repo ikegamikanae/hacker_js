@@ -42,3 +42,18 @@ const hash = {
 
 // "text"を探す　→　"foo"があれば"uryyyy"に変換
 // 再帰処理？
+function seekWords(obj) {
+  for (const o in obj) {
+    if (o === "text") {
+      const txt = obj[o].replace(/foo/g, "uryyyy!!");
+      obj[o] = txt;
+      // return;
+    } else {
+      seekWords(obj[o]);
+    }
+  }
+}
+
+// console.dir(hash);
+seekWords(hash);
+console.log(JSON.stringify(hash));
