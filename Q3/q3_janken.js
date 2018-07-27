@@ -1,55 +1,43 @@
 'use strict';
-/**
- * 課題３：コンピューターとじゃんけんするプログラムを作ろう
- * 勝負がつくまでやる
- */
+// 課題３：コンピューターとじゃんけんするプログラムを作ろう
+// 勝負がつくまでやる
 
-function rand(m, n) {
-    return m + Math.floor((n - m + 1) * Math.random());
+function generateRandomNumber(first, last) {
+    return first + Math.floor((last - first + 1) * Math.random());
 }
 
 let comp;
 let user;
-let game;
+let winner = "";
 const janken = ["ぐー", "ちょき", "ぱー"];
 
-do {
-    game = true;
-    comp = rand(0, 2);
+while (!winner) {
+    comp = generateRandomNumber(0, 2);
     // ユーザー
     user = window.prompt("じゃんけん・・・(0:ぐー / 1:ちょき / 2:ぱー )");
     user = parseInt(user);
     if (user >= 0 && user <= 2) {
-        let name;
         console.log("コンピューター：" + janken[comp]);
         console.log("あなた：" + janken[user]);
         switch (user - comp) {
             case -2:
-                name = "コンピューター";
+            case 1:
+                winner = "コンピューター";
                 break;
             case -1:
-                name = "あなた";
+            case 2:
+                winner = "あなた";
                 break;
             case 0:
-                name = "あいこでしょ！";
-                game = false;
-                break;
-            case 1:
-                name = "コンピューター";
-                break;
-            case 2:
-                name = "あなた";
                 break;
         }
 
-        if (game) {
-            console.log(`${name}の勝ち！`)
+        if (winner) {
+            console.log(`${winner}の勝ち！`)
         } else {
-            console.log(name);
+            console.log("あいこでしょ！");
         }
     } else {
         console.log("0,1,2の数字をいれてね。");
-        game = false;
     }
-
-} while (!game);
+};

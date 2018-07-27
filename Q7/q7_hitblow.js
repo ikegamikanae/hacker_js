@@ -26,11 +26,8 @@ do {
 
 window.prompt(dispMsg + `・・・正解！${counter}回目で当てました！`);
 
-/**
- * ランダムな値を返す
- */
-function rand(m, n) {
-    return m + Math.floor((n - m + 1) * Math.random());
+function generateRandomNumber(first, last) {
+    return first + Math.floor((last - first + 1) * Math.random());
 }
 
 /**
@@ -38,19 +35,14 @@ function rand(m, n) {
  */
 function makeDigitNum(n) {
     const resultArr = [];
-    const length = 10;
-    const start = 0;
-    const num = Array.apply(null, new Array(10)).map(function (v, i) {
-        return start + i;
-    });
-    for (let j = length - 1; j >= (length - n); j--) {
-        // とりあえずの配列作成
-        const idx = rand(0, j);
-        const getNum = num.splice(idx, 1);
+    const num = Array.apply(null, new Array(10)).map((v, i) => i);
+    for (let i = 0; i < n; i++) {
+        const indexNum = generateRandomNumber(0, num.length - 1);
+        const getNum = num.splice(indexNum, 1);
         resultArr.push(getNum[0]);
     }
-    return resultArr;
 
+    return resultArr;
 }
 
 
@@ -61,27 +53,13 @@ function chkAns(ans, user) {
     const chkResult = {};
     chkResult.hit = 0;
     chkResult.blow = 0;
-    // 配列のメソッド：indexOfを使って比較
-    // for (const key in ans) {
-    //     const val = ans[key];
-    //     const index = user.indexOf(val);
-    //     // console.log("key:" + key);
-    //     // console.log("index:" + index);
-    //     if (Number(key) === index) {
-    //         // hit
-    //         chkResult.hit += 1;
-    //         // console.log("hit!");
-    //     } else if (!(index === -1)) {
-    //         // blow
-    //         chkResult.blow += 1;
-    //     }
-    // }
+
     for (let i = 0; i < ans.length; i++) {
         const val = ans[i];
         const index = user.indexOf(val);
         if (index === i) {
             chkResult.hit += 1;
-        } else if (!(index === -1)) {
+        } else if (index !== -1) {
             chkResult.blow += 1;
         }
     }
@@ -93,15 +71,11 @@ function setMsgNum(str) {
     const num = window.prompt(str, "答えを入力してね");
     // 受け取った数値を配列にする
     let inArr = num.split("");
-    inArr = inArr.map(function (inArr) {
-        return Number(inArr);
-    });
+    inArr = inArr.map(c => Number(c));
     if (!(inArr.length === 4)) {
         window.prompt("4桁の数字を入力してください。");
-        // console.error("入力エラー");
         return;
     }
-    // console.log(inArr);
 
     counter++;
     return inArr;
