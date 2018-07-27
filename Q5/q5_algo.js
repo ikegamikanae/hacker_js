@@ -111,21 +111,15 @@ function getMinValue(arr) {
     return minValue;
 }
 
-// 合計
 const total = sum(algoOrg);
 console.log("合計：" + total);
 console.log("平均（小数点以下四捨五入）：" + Math.round(total / algoOrg.length));
-// 最大値
 console.log("最大値 : " + getMaxValue(algoOrg));
-// 最小値
 console.log("最小値 : " + getMinValue(algoOrg));
-// 小さい順
 const algo1 = bubbleSortAsc(algoOrg);
 console.log("小さい順（バブルソート）：" + algo1);
-// 大きい順
 const algo2 = bubbleSortDesc(algoOrg);
 console.log("大きい順（バブルソート）：" + algo2);
-// クイックソートで並べ替え
 const algo4 = quikSortAsc(algoOrg);
 console.log("小さい順（クイックソート）：" + algo4);
 const algo5 = quikSortDesc(algoOrg);

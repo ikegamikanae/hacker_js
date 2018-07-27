@@ -21,12 +21,12 @@ function setMsgNum(str) {
 // 答えを決める
 const answer = generateRandomNumber(0, 100);
 let dispMsg = "0-100の数字を入力してね。";
-let userAns;
+let userAnswer;
 while (true) {
     userAns = setMsgNum(dispMsg);
-    if (answer < userAns) {
+    if (answer < userAnswer) {
         dispMsg = "もっと下だよ";
-    } else if (answer === userAns) {
+    } else if (answer === userAnswer) {
         dispMsg = "正解！";
         break;
     } else {

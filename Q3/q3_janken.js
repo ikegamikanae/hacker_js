@@ -6,20 +6,20 @@ function generateRandomNumber(first, last) {
     return first + Math.floor((last - first + 1) * Math.random());
 }
 
-let comp;
+let computer;
 let user;
 let winner = "";
 const janken = ["ぐー", "ちょき", "ぱー"];
 
 while (!winner) {
-    comp = generateRandomNumber(0, 2);
+    computer = generateRandomNumber(0, 2);
     // ユーザー
     user = window.prompt("じゃんけん・・・(0:ぐー / 1:ちょき / 2:ぱー )");
     user = parseInt(user);
     if (user >= 0 && user <= 2) {
-        console.log("コンピューター：" + janken[comp]);
+        console.log("コンピューター：" + janken[computer]);
         console.log("あなた：" + janken[user]);
-        switch (user - comp) {
+        switch (user - computer) {
             case -2:
             case 1:
                 winner = "コンピューター";

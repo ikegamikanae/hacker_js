@@ -72,7 +72,7 @@ function setMsgNum(str) {
     // 受け取った数値を配列にする
     let inArr = num.split("");
     inArr = inArr.map(c => Number(c));
-    if (!(inArr.length === 4)) {
+    if (inArr.length !== 4) {
         window.prompt("4桁の数字を入力してください。");
         return;
     }
