@@ -23,7 +23,7 @@ const answer = generateRandomNumber(0, 100);
 let dispMsg = "0-100の数字を入力してね。";
 let userAnswer;
 while (true) {
-    userAns = setMsgNum(dispMsg);
+    userAnswer = setMsgNum(dispMsg);
     if (answer < userAnswer) {
         dispMsg = "もっと下だよ";
     } else if (answer === userAnswer) {
