@@ -45,13 +45,11 @@ function seekWords(obj) {
     if (o === "text") {
       const txt = obj[o].replace(/foo/g, "uryyyy!!");
       obj[o] = txt;
-      // return;
     } else {
       seekWords(obj[o]);
     }
   }
 }
 
-// console.dir(hash);
 seekWords(hash);
 console.log(JSON.stringify(hash));

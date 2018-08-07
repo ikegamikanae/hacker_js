@@ -11,27 +11,27 @@ function generateRandomNumber(first, last) {
 
 let counter = 0;
 
-function setMsgNum(str) {
-    let num = window.prompt(str, "答えを入力してね");
-    num = parseInt(num);
+function setMessageInput(str) {
+    let userInput = window.prompt(str, "答えを入力してね");
+    userInput = parseInt(userInput);
     counter++;
-    return num;
+    return userInput;
 }
 
 // 答えを決める
 const answer = generateRandomNumber(0, 100);
-let dispMsg = "0-100の数字を入力してね。";
+let outputMessage = "0-100の数字を入力してね。";
 let userAnswer;
 while (true) {
-    userAnswer = setMsgNum(dispMsg);
+    userAnswer = setMessageInput(outputMessage);
     if (answer < userAnswer) {
-        dispMsg = "もっと下だよ";
+        outputMessage = "もっと下だよ";
     } else if (answer === userAnswer) {
-        dispMsg = "正解！";
+        outputMessage = "正解！";
         break;
     } else {
-        dispMsg = "もっと上だよ";
+        outputMessage = "もっと上だよ";
     }
 }
 
-window.prompt(dispMsg + `・・・${counter}回目で当てました！`);
+window.prompt(outputMessage + `・・・${counter}回目で当てました！`);
